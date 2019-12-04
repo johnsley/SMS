@@ -1,0 +1,62 @@
+﻿@model IEnumerable<System1.Models.MultipleTable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Student Marks</h2>
+
+<p>
+    <span class="glyphicon glyphicon-plus"></span> @Html.ActionLink("Add Student Marks", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Adm No.
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Maths (%)
+        </th>
+        <th>
+            English (%)
+            @*@Html.DisplayNameFor(model => model.English)*@
+        </th>
+        <th>
+            Total Marks
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @item.studentdetails.AdmNo
+        </td>
+        <td>
+           @item.studentdetails.Name
+        </td>
+        <td>
+            @item.marksdetails.Maths
+        </td>
+        <td>
+            @item.marksdetails.English
+        </td>
+        <td>
+            @{
+                var score1 = Convert.ToInt32(item.marksdetails.Maths);
+                var score2 = Convert.ToInt32(item.marksdetails.English);   
+            }
+            @(score1 + score2)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.marksdetails.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id = item.marksdetails.Id }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id = item.marksdetails.Id })
+        </td>
+    </tr>
+}
+
+</table>

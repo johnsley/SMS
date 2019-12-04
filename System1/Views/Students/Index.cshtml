@@ -1,0 +1,41 @@
+﻿@model IEnumerable<System1.Models.Student>
+
+@{
+    ViewBag.Title = "Students";
+}
+
+<h2>Student List</h2>
+<p>
+    @*Student Details | @Html.ActionLink("Register Student", "Create") | @Html.ActionLink("Student Marks", "")*@
+
+    <span class="glyphicon glyphicon-plus"></span> @Html.ActionLink("Register Student", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdmNo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdmNo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StudentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StudentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StudentId })
+        </td>
+    </tr>
+}
+
+</table>
